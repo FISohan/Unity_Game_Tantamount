@@ -29,7 +29,7 @@ public class Touch_event : MonoBehaviour
                 touchMovedPosition = Vector2.zero;
             }
         }
-        Debug.Log(direction());
+       // Debug.Log(direction());
       //  direction();
     }
 
@@ -37,11 +37,11 @@ public class Touch_event : MonoBehaviour
     {
         Vector2 f1 = touchMovedPosition - touchBeganPosition;
 
-        if(f1.x < 0)
+        if(f1.x < 0 || Input.GetKey(KeyCode.LeftArrow) )
         {
             return -1;
         }
-        else if(f1.x > 0)
+        else if(f1.x > 0 || Input.GetKey(KeyCode.RightArrow) )
         {
             return 1;
         }
