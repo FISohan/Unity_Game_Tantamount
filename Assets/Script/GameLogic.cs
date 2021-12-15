@@ -15,12 +15,16 @@ public class GameLogic : MonoBehaviour
     private Vector2 init_pawn_position = new Vector2();
 
     int[] _random_index = new int[2];
-    int pawn_sprite_index;
+    int pawn_sprite_index = 0;
+    int direction = 1;
+
+    bool b1 = true;
     private void set_random_index()
     {
         _random_index[0] = Random.Range(0, shape.Length);
         _random_index[1] = Random.Range(0, shape.Length);
         pawn_sprite_index = Random.Range(0, _random_index.Length);
+        direction = pawn_sprite_index == 0 ? -1 : 1;
     }
 
     private void set_sprite()
@@ -34,28 +38,31 @@ public class GameLogic : MonoBehaviour
 
     private void init_sprite()
     {
+        b1 = true;
         set_sprite();
         pawn_transform.position = init_pawn_position;
     }
 
-    private void Start()
+    public void pawnMove(int dir)
     {
-        init_pawn_position = pawn_transform.position;
-        set_sprite();
-    }
-
-    private void Update()
-    {
-        if(FindObjectOfType<Touch_event>().direction() == 1 && pawn_sprite_index == 0)
-        {
-            init_sprite();
-        }else if(FindObjectOfType<Touch_event>().direction() == -1 && pawn_sprite_index == 1)
+        if(direction == dir)
         {
             init_sprite();
         }
         else
         {
-            Debug.Log("gameover");
+            Debug.Log("Gameover!goto hell");
         }
+    }
+
+    private void Start()
+    {
+        init_pawn_position = pawn_transform.position;
+        init_sprite();
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 }

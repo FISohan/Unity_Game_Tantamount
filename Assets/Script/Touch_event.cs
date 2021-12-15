@@ -7,8 +7,8 @@ public class Touch_event : MonoBehaviour
 {
     Vector2 touchBeganPosition = new Vector2();
     Vector2 touchMovedPosition = new Vector2();
-
-    void Update()
+    Vector2 currentPositionDelta = new Vector2();
+    void FixedUpdate()
     {
 
         if (Input.touchCount > 0)
@@ -19,33 +19,28 @@ public class Touch_event : MonoBehaviour
             {
                 touchBeganPosition = _t.position;
             }
-            if (_t.phase == TouchPhase.Moved)
-            {
-                touchMovedPosition = _t.position;
-            }
+
             if(_t.phase == TouchPhase.Ended)
             {
-                touchBeganPosition = Vector2.zero;
-                touchMovedPosition = Vector2.zero;
+                touchMovedPosition = _t.position;
+                currentPositionDelta = touchMovedPosition - touchBeganPosition;
+
+                if(currentPositionDelta.x < 0)
+                {
+                    Debug.Log("left");
+                    FindObjectOfType<GameLogic>().pawnMove(-1);
+                }else if(currentPositionDelta.x > 0)
+                {
+                    Debug.Log("right");
+                    FindObjectOfType<GameLogic>().pawnMove(1);
+                }
             }
+
+           // Debug.Log(currentPositionDelta);
         }
        // Debug.Log(direction());
       //  direction();
     }
 
-    public int direction()
-    {
-        Vector2 f1 = touchMovedPosition - touchBeganPosition;
 
-        if(f1.x < 0 || Input.GetKey(KeyCode.LeftArrow) )
-        {
-            return -1;
-        }
-        else if(f1.x > 0 || Input.GetKey(KeyCode.RightArrow) )
-        {
-            return 1;
-        }
-
-        return 0;
-    }
 }

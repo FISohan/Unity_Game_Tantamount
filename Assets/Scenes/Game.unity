@@ -441,6 +441,7 @@ MonoBehaviour:
   p1: {fileID: 2082910414}
   p2: {fileID: 283995123}
   pawn: {fileID: 1052711211}
+  pawn_transform: {fileID: 1052711212}
 --- !u!1 &838388856
 GameObject:
   m_ObjectHideFlags: 0

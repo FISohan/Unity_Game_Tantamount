@@ -23,8 +23,8 @@ public class Pawn_movement : MonoBehaviour
     {
         if (has_destroy())
         {
-            Debug.Log("gameover");
-            Destroy(gameObject, 0.8f);
+         //   Debug.Log("gameover");
+           // Destroy(gameObject, 0.8f);
         }
     }
 }
