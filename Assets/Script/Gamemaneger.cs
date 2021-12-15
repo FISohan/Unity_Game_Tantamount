@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Gamemaneger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int score = 0;
+    public void increaseScore(int s)
     {
-        
+        score += s;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int getScore() => score;
+
 }
