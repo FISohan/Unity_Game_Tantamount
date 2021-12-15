@@ -1,6 +1,8 @@
-using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class GameLogic : MonoBehaviour
 {
     public Sprite[] shape;
@@ -10,14 +12,24 @@ public class GameLogic : MonoBehaviour
 
    public SpriteRenderer pawn;
 
-    public TextMeshProUGUI score;
-    Gamemaneger gamemaneger;
     public Transform pawn_transform;
     private Vector2 init_pawn_position = new Vector2();
 
     int[] _random_index = new int[2];
     int pawn_sprite_index = 0;
     int direction = 1;
+
+    bool b1 = true;
+
+    public TextMeshProUGUI score;
+    //Gamemaneger gamemaneger;
+
+    private void Start()
+    {
+        init_pawn_position = pawn_transform.position;
+     //   gamemaneger = FindObjectOfType<Gamemaneger>();
+        init_sprite();
+    }
 
     private void set_random_index()
     {
@@ -38,11 +50,14 @@ public class GameLogic : MonoBehaviour
 
     private void init_sprite()
     {
+        b1 = true;
         set_sprite();
         pawn_transform.position = init_pawn_position;
-        gamemaneger.increaseScore(10);
-        score.text = gamemaneger.getScore().ToString();
+
+        FindObjectOfType<Gamemaneger>().increaseScore(10);
+        score.text = FindObjectOfType<Gamemaneger>().getScore().ToString();
         FindObjectOfType<Pawn_movement>().increaseSpeed(0.05f);
+
     }
 
     public void pawnMove(int dir)
@@ -57,12 +72,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        gamemaneger = FindObjectOfType<Gamemaneger>();
-        init_pawn_position = pawn_transform.position;
-        init_sprite();
-    }
+
 
     private void FixedUpdate()
     {

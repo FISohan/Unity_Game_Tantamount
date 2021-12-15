@@ -14,16 +14,17 @@ public class Pawn_movement : MonoBehaviour
         game_over();
     }
 
-    public void increaseSpeed(float s)
-    {
-        speed += s;
-    }
-
     private bool has_destroy()
     {
         if (Mathf.FloorToInt(Vector2.Distance(denger_position.position, transform.position)) == 0) return true;
         return false;
     }
+
+    public void increaseSpeed(float s)
+    {
+        speed += s;
+    }
+
     private void game_over()
     {
         if (has_destroy())
