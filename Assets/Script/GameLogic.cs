@@ -33,8 +33,11 @@ public class GameLogic : MonoBehaviour
 
     private void set_random_index()
     {
-        _random_index[0] = Random.Range(0, shape.Length);
-        _random_index[1] = Random.Range(0, shape.Length);
+        int r1 = Random.Range(0, shape.Length);
+        int r2 = Random.Range(0, shape.Length);
+
+        _random_index[0] = r1 == r2 ? Random.Range(0, 2) : r1;
+        _random_index[1] = r1 == r2 ? Random.Range(shape.Length - 2, shape.Length) : r2;
         pawn_sprite_index = Random.Range(0, _random_index.Length);
         direction = pawn_sprite_index == 0 ? -1 : 1;
     }
