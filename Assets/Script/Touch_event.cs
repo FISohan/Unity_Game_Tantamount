@@ -8,6 +8,8 @@ public class Touch_event : MonoBehaviour
     Vector2 touchBeganPosition = new Vector2();
     Vector2 touchMovedPosition = new Vector2();
     Vector2 currentPositionDelta = new Vector2();
+
+    public GameObject trail;
     void FixedUpdate()
     {
 
@@ -19,7 +21,11 @@ public class Touch_event : MonoBehaviour
             {
                 touchBeganPosition = _t.position;
             }
-
+            if(_t.phase == TouchPhase.Moved)
+            {
+                Vector3 p = Camera.main.ScreenToWorldPoint(_t.position);
+                trail.transform.position = new Vector2(p.x, p.y);
+            }
             if(_t.phase == TouchPhase.Ended)
             {
                 touchMovedPosition = _t.position;
