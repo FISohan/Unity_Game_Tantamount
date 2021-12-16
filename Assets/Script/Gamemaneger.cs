@@ -12,4 +12,14 @@ public class Gamemaneger : MonoBehaviour
     }
 
     public int getScore() => score;
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1;
+    }
 }
