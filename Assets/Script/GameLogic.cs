@@ -71,7 +71,7 @@ public class GameLogic : MonoBehaviour
         }
         else
         {
-            Debug.Log("Gameover!goto hell");
+            FindObjectOfType<Gamemaneger>().gameover();
         }
     }
 
